@@ -1,36 +1,58 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import PyPDF2 as pdf
 from pdf2image import convert_from_bytes
-import tempfile
-import os
+import utils.templates as load_template
 
 def convert_pdf_to_images(pdf_bytes):
+    '''
+    This function converts pdf files to images.
+    It takes a pdf file in byte form and returns list of all pages as images
+    '''
     images = convert_from_bytes(pdf_bytes)
-    return images        
+    return images 
 
-#Setting a title for the Streamlit Application and adding a description
+# Setting Streamlit to wide mode
+st.set_page_config(page_title="PDF Slicer", page_icon="📄", layout="wide")     
+
+# Setting a title for the Streamlit Application and adding a description
+st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Image_Crop_Icon.svg/81px-Image_Crop_Icon.svg.png?20160621222328')
 st.title('PDF Slicer')
-st.write('This App can slice up a .pdf file into images.')
+st.write('©Sharon Buch')
+st.markdown("""---""")
 
-#Upload pdf
-uploaded_file = st.file_uploader("Choose a .pdf file", type=["pdf"])
+# Create Columns
+col1, col2 = st.columns(2)
 
-if uploaded_file is not None:
+with st.sidebar:
+    # Upload pdf
+    st.subheader('PDF Upload:')
+    uploaded_file = st.file_uploader("Choose a .pdf file", type=["pdf"])
+    st.markdown("""---""")
 
-    # Convert PDF to images
-    pdf_bytes = uploaded_file.read()
-    images = convert_pdf_to_images(pdf_bytes)
+    with col1:
+        if uploaded_file is not None:
+            # Convert PDF to images
+            filename = uploaded_file.name[:-4]
+            pdf_bytes = uploaded_file.read()
+            images = convert_pdf_to_images(pdf_bytes)
 
-    # Display the images
-    st.write("### PDF Pages Image Preview:")
-    for i, image in enumerate(images):
-        st.image(image, caption=f"Page {i + 1}", use_column_width=True)
+            # Display the images
+            st.subheader("PDF Pages Image Preview:")
+            for i, image in enumerate(images):
+                st.image(image, caption=f"Page {i + 1}", width=200)
+            image_count = i+1
 
-    #Select Cutting Template
-    option = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
-    if st.button('Confirm', type="primary"):
-        st.write(option)
-    else:
-        st.write('No Selection confirmed')
+            with st.sidebar:
+                # Select Cutting Template
+                st.subheader("Select Template:")
+                option = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
+                st.markdown("""---""")
+
+            with col2:
+                if option == 'DHL parcel':
+                    load_template.dhl_parcel(filename, images)
+                
+                if option == 'Custom':
+                    load_template.custom(filename, images)
+
+
+    
