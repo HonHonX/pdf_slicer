@@ -17,7 +17,6 @@ def number_input_set(x,y,width,height,rotation,pack_number,index):
 
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
-
 def custom(filename, images, index, instant_download=False):
 
     st.write("**Cropped Image**")
@@ -41,7 +40,8 @@ def custom(filename, images, index, instant_download=False):
         if st.button("Download cropped images", type='primary') or instant_download:
 
             # Save the image
-            cropped_image.save("Downloaded_Images/" + filename + "_cropped.png",format="PNG")
+            #cropped_image.save("Downloaded_Images/" + filename + "_cropped.png",format="PNG")
+            cropped_image.save(filename + "_cropped.png",format="PNG")
 
 def dhl_parcel(filename, images, index, instant_download=False):
     number_pages = len(images)  
@@ -82,7 +82,6 @@ def dhl_parcel(filename, images, index, instant_download=False):
         # Display the cropped image
         st.image(cropped_image_2, caption="Cropped Image", use_column_width=True)
 
-
     if international_parcel:
         with col3:
             st.write("**Zollerklärung**")
@@ -101,10 +100,15 @@ def dhl_parcel(filename, images, index, instant_download=False):
         if st.button("Download cropped images (selected file)", type='primary') or instant_download:
 
             # Save the image
-            cropped_image_1.save("Downloaded_Images/" + filename + "_1.png",format="PNG")
-            cropped_image_2.save("Downloaded_Images/" + filename + "_2.png",format="PNG")
+            # cropped_image_1.save("Downloaded_Images/" +filename + "_1.png",format="PNG")
+            # cropped_image_2.save("Downloaded_Images/" + filename + "_2.png",format="PNG")
+            # if international_parcel:
+            #     cropped_image_3.save("Downloaded_Images/" + filename + "_3.png",format="PNG")
+
+            cropped_image_1.save(filename + "_1.png",format="PNG")
+            cropped_image_2.save(filename + "_2.png",format="PNG")
             if international_parcel:
-                cropped_image_3.save("Downloaded_Images/" + filename + "_3.png",format="PNG")
+                cropped_image_3.save(filename + "_3.png",format="PNG")
     
 
 
