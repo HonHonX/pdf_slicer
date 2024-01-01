@@ -25,21 +25,29 @@ col1, col2 = st.columns(2)
 with st.sidebar:
     # Upload pdf
     st.subheader('PDF Upload:')
-    uploaded_file = st.file_uploader("Choose a .pdf file", type=["pdf"])
+    uploaded_files = st.file_uploader("Choose a .pdf file", type=["pdf"], accept_multiple_files=True)
     st.markdown("""---""")
 
     with col1:
-        if uploaded_file is not None:
+        if len(uploaded_files) > 0:
+            # Choose file to display
+            selected_file_number = 1
+            if len(uploaded_files)>1:
+                selected_file_number = st.slider("Select file to preview", 1, len(uploaded_files), 1)
+            uploaded_file = uploaded_files[selected_file_number-1]
+
             # Convert PDF to images
+            images = []
             filename = uploaded_file.name[:-4]
             pdf_bytes = uploaded_file.read()
-            images = convert_pdf_to_images(pdf_bytes)
+            images += convert_pdf_to_images(pdf_bytes)
 
             # Display the images
-            st.subheader("PDF Pages Image Preview:")
-            for i, image in enumerate(images):
-                st.image(image, caption=f"Page {i + 1}", width=200)
-            image_count = i+1
+            st.subheader("PDF Pages image preview:")
+            page_number = 1
+            if len(images)>1:
+                page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
+            st.image(images[page_number-1], caption=f"Page {page_number}", width=200)
 
             with st.sidebar:
                 # Select Cutting Template
@@ -49,10 +57,25 @@ with st.sidebar:
 
             with col2:
                 if option == 'DHL parcel':
-                    load_template.dhl_parcel(filename, images)
+                    load_template.dhl_parcel(filename, images, 1)
                 
                 if option == 'Custom':
-                    load_template.custom(filename, images)
+                    load_template.custom(filename, images, 1)
+
+            # with st.sidebar:
+            #     if st.button("Download cropped images (all files)", type='primary'):
+            #         for index, uploaded_file in enumerate(uploaded_files):
+            #             print (index)
+            #             temp_filename = uploaded_file.name[:-4]
+            #             temp_pdf_bytes = uploaded_file.read()
+            #             temp_images = convert_pdf_to_images(temp_pdf_bytes)
+            #             print ('test4')
+
+            #             if option == 'DHL parcel':
+            #                 load_template.dhl_parcel(temp_filename, temp_images, index*1, instant_download=True)
+
+            #             if option == 'Custom':
+            #                 load_template.custom(temp_filename, temp_images, index+1, instant_download=True)
 
 
-    
+                
