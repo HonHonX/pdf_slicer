@@ -12,12 +12,14 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade protobuf
+RUN pip install --no-cache-dir protobuf==3.20.0
 
 #Expose Port 8501 for app to be run on
 EXPOSE 8501
 
 # Define environment variable
-ENV NAME PDFSLICE
+ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
 #Command to run Streamlit application
 CMD streamlit run code.py
