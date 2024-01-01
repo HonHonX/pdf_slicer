@@ -11,7 +11,6 @@ def convert_pdf_to_images(pdf_bytes):
     return images 
 
 # Setting Streamlit to wide mode
-st.set_option('browser.gatherUsageStats', False)
 st.set_page_config(page_title="PDF Slicer", page_icon="📄", layout="wide")     
 
 # Setting a title for the Streamlit Application and adding a description

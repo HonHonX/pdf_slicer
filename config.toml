@@ -1,3 +1,5 @@
+showfileUploaderEncoding = False
 [theme]
 base="dark"
 primaryColor="#ffbc00"
+
