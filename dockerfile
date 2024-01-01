@@ -9,7 +9,7 @@ EXPOSE 8501
 #Run command line instructions specific to the package
 RUN apt-get update
 RUN apt-get install poppler-utils -y
-RUN virtualenv -p python3.7 /env
+#RUN virtualenv -p python3.7 /env
 #RUN conda install -c conda-forge poppler
 RUN pip install pdf2image
 RUN pip install streamlit
