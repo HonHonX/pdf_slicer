@@ -1,5 +1,6 @@
 import streamlit as st
 from pdf2image import convert_from_bytes
+import os
 
 def cut_image(image, x, y, width, height, rotation):
     # Crop the image based on specified pixel dimensions
@@ -18,6 +19,8 @@ def number_input_set(x,y,width,height,rotation,pack_number,index):
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
 def custom(filename, images, index, instant_download=False):
+    # download_dir = "Downloaded_Images/"
+    # os.makedirs(download_dir, exist_ok=True)
 
     st.write("**Cropped Image**")
     page_number = 1
@@ -38,12 +41,14 @@ def custom(filename, images, index, instant_download=False):
     # Download button for the cropped image
     with st.sidebar:
         if st.button("Download cropped images", type='primary') or instant_download:
-
             # Save the image
-            #cropped_image.save("Downloaded_Images/" + filename + "_cropped.png",format="PNG")
-            cropped_image.save(filename + "_cropped.png",format="PNG")
+            download_dir = "Downloaded_Images/"
+            os.makedirs(download_dir, exist_ok=True)
+            cropped_image.save("Downloaded_Images/" + filename + "_cropped.png",format="PNG")
 
 def dhl_parcel(filename, images, index, instant_download=False):
+    # download_dir = "Downloaded_Images/"
+    # os.makedirs(download_dir, exist_ok=True)
     number_pages = len(images)  
 
     # Determining if the pdf is referring to an international/national parcel
@@ -98,17 +103,11 @@ def dhl_parcel(filename, images, index, instant_download=False):
     with st.sidebar:
         # Download button for the cropped image
         if st.button("Download cropped images (selected file)", type='primary') or instant_download:
-
             # Save the image
-            # cropped_image_1.save("Downloaded_Images/" +filename + "_1.png",format="PNG")
-            # cropped_image_2.save("Downloaded_Images/" + filename + "_2.png",format="PNG")
-            # if international_parcel:
-            #     cropped_image_3.save("Downloaded_Images/" + filename + "_3.png",format="PNG")
-
-            cropped_image_1.save(filename + "_1.png",format="PNG")
-            cropped_image_2.save(filename + "_2.png",format="PNG")
+            cropped_image_1.save("Downloaded_Images/" +filename + "_1.png",format="PNG")
+            cropped_image_2.save("Downloaded_Images/" + filename + "_2.png",format="PNG")
             if international_parcel:
-                cropped_image_3.save(filename + "_3.png",format="PNG")
+                cropped_image_3.save("Downloaded_Images/" + filename + "_3.png",format="PNG")
     
 
 

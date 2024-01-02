@@ -1,7 +1,7 @@
 #created following https://medium.com/@ishaterdal/deploying-a-streamlit-app-with-docker-db40a8dec84f
 
 #Set base image in Python
-FROM python:3.8-slim
+FROM python:3.12.1
 
 #Copy all files from local project folder to Docker image
 COPY . .
@@ -14,6 +14,7 @@ RUN apt-get update && \
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir --upgrade protobuf
 RUN pip install --no-cache-dir protobuf==3.20.0
+RUN pip install --upgrade streamlit watchdog
 
 #Expose Port 8501 for app to be run on
 EXPOSE 8501
@@ -22,4 +23,4 @@ EXPOSE 8501
 ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
 #Command to run Streamlit application
-CMD streamlit run code.py
+CMD streamlit run code.py --browser.gatherUsageStats FALSE --server.headless TRUE  --global.disableWatchdogWarning TRUE
