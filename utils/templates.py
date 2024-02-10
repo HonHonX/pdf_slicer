@@ -104,7 +104,7 @@ def dhl_parcel(filename, images, index, instant_download=False):
 
             # Display the cropped image
             st.image(cropped_image_3, caption="cropped image", use_column_width=True)
-            st.write(f(type(cropped_image_3)))
+            st.write(type(cropped_image_3))
 
     with st.sidebar:
         # Download button for the cropped image
