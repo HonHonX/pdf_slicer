@@ -106,12 +106,12 @@ def dhl_parcel(filename, images, index, instant_download=False):
             st.image(cropped_image_3, caption="cropped image", use_column_width=True)
             st.write(type(cropped_image_3)
 
-    #with st.sidebar:
+    with st.sidebar:
         # Download button for the cropped image
-        # if st.button("Download cropped images (selected file)", type='primary') or instant_download:
+        if st.button("Download cropped images (selected file)", type='primary') or instant_download:
             # Save the image
-            # cropped_image_1.save("/Downloaded_Images/" +filename + "_1.png",format="PNG")
-            # cropped_image_2.save("/Downloaded_Images/" + filename + "_2.png",format="PNG")
-            # if international_parcel:
-            #     cropped_image_3.save("/Downloaded_Images/" + filename + "_3.png",format="PNG")
-            #st.download_button(label="Download cropped images (selected file)", data=cropped_image_1, file_name=filename + "_1.png", mime='image/png')
+            cropped_image_1.save("/Downloaded_Images/" +filename + "_1.png",format="PNG")
+            cropped_image_2.save("/Downloaded_Images/" + filename + "_2.png",format="PNG")
+            if international_parcel:
+                cropped_image_3.save("/Downloaded_Images/" + filename + "_3.png",format="PNG")
+        
