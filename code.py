@@ -35,18 +35,18 @@ with st.sidebar:
             # Choose file to display
             selected_file_number = 1
             if len(uploaded_files)>1:
-                selected_file_number = st.slider("Select file to preview", 1, len(uploaded_files), 1)
-            uploaded_file = uploaded_files[selected_file_number-1]
+                selected_file_number = st.slider("Select file to preview", 1, len(uploaded_files), 1) #st.slider(label,min,max,startingValue)
+            uploaded_file = uploaded_files[selected_file_number-1] 
 
             # Convert PDF to images
             images = []
-            filename = uploaded_file.name[:-4]
+            filename = uploaded_file.name[:-4] #without the .pdf part
             pdf_bytes = uploaded_file.read()
             images += convert_pdf_to_images(pdf_bytes)
 
             # Display the images
             st.subheader("PDF Pages image preview:")
-            page_number = 1
+            page_number = 1 #default
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
             st.image(images[page_number-1], caption=f"Page {page_number}", width=200)
@@ -54,14 +54,14 @@ with st.sidebar:
             with st.sidebar:
                 # Select Cutting Template
                 st.subheader("Select Template:")
-                option = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
+                template = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
                 st.markdown("""---""")
 
             with col2:
-                if option == 'DHL parcel':
+                if template == 'DHL parcel':
                     load_template.dhl_parcel(filename, images, 1)
                 
-                if option == 'Custom':
+                if template == 'Custom':
                     load_template.custom(filename, images, 1)
 
             # with st.sidebar:
@@ -73,10 +73,10 @@ with st.sidebar:
             #             temp_images = convert_pdf_to_images(temp_pdf_bytes)
             #             print ('test4')
 
-            #             if option == 'DHL parcel':
+            #             if template == 'DHL parcel':
             #                 load_template.dhl_parcel(temp_filename, temp_images, index*1, instant_download=True)
 
-            #             if option == 'Custom':
+            #             if template == 'Custom':
             #                 load_template.custom(temp_filename, temp_images, index+1, instant_download=True)
 
 
