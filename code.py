@@ -63,7 +63,7 @@ with st.sidebar:
                     load_template.custom(filename, images, 1)
 
             with st.sidebar:
-                st.download_button(label="💾Download", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
+                st.download_button(label="💾 Download cropped image(s)", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
 
             # with st.sidebar:
             #     if st.button("Download cropped images (all files)", type='primary'):
