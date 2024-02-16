@@ -79,7 +79,7 @@ with st.sidebar:
             #             if template == 'Custom':
             #                 load_template.custom(temp_filename, temp_images, index+1, instant_download=True)
 
-            with st.sidebar:
+            #with st.sidebar:
                 # if template == 'DHL parcel':
                 #     st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
                 # for index, uploaded_file in enumerate(uploaded_files):
