@@ -37,12 +37,12 @@ def custom(filename, images, index, instant_download=False):
     # Display the cropped image
     st.image(cropped_image, caption="Cropped Image", use_column_width=True)
 
-    # Download button for the cropped image
-    with st.sidebar:
-        buf = BytesIO()
-        cropped_image.save(buf, format="JPEG")
-        byte_im = buf.getvalue()
-        st.download_button(label="Download Image",data=byte_im,file_name=filename+"_cropped_image.jpg",mime="image/jpg")
+    # Saving cropped image to temp
+    with zipfile.ZipFile(filename+".zip", "w") as zip:
+        cropped_image_bytes = BytesIO()
+        cropped_image.save(cropped_image_bytes, format="JPEG")
+        cropped_image_bytes.seek(0)
+        zip.writestr(filename+".jpg", cropped_image_bytes.read())
 
 def dhl_parcel(filename, images, index, instant_download=False):
     number_pages = len(images)  
@@ -114,7 +114,3 @@ def dhl_parcel(filename, images, index, instant_download=False):
                 cropped_image_3.save(cropped_image_3_bytes, format="JPEG")
                 cropped_image_3_bytes.seek(0)
                 zip.writestr(filename+"_customs.jpg", cropped_image_3_bytes.read())
-
-        # # Provide download button for the zip file
-        # st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
-        
