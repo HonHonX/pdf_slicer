@@ -49,9 +49,8 @@ with st.sidebar:
 
             with st.sidebar:
                 st.write('©Sharon Buch')
-                
+
                 # Select Cutting Template
-                st.subheader("Select Template:")
                 template = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
                 st.markdown("""---""")
 
