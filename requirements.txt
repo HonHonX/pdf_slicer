@@ -1,3 +1,2 @@
 streamlit
 pdf2image
-zipfile
