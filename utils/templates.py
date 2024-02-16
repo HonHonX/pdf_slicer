@@ -115,6 +115,6 @@ def dhl_parcel(filename, images, index, instant_download=False):
                 cropped_image_3_bytes.seek(0)
                 zip.writestr(filename+"_customs.jpg", cropped_image_3_bytes.read())
 
-        # Provide download button for the zip file
-        st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
+        # # Provide download button for the zip file
+        # st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
         

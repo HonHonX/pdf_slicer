@@ -58,6 +58,7 @@ with st.sidebar:
             with col2:
                 if template == 'DHL parcel':
                     load_template.dhl_parcel(filename, images, 1)
+                    st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
                 
                 if template == 'Custom':
                     load_template.custom(filename, images, 1)
@@ -77,5 +78,16 @@ with st.sidebar:
             #             if template == 'Custom':
             #                 load_template.custom(temp_filename, temp_images, index+1, instant_download=True)
 
+            with st.sidebar:
+                for index, uploaded_file in enumerate(uploaded_files):
+                    temp_filename = uploaded_file.name[:-4]
+                    temp_pdf_bytes = uploaded_file.read()
+                    temp_images = convert_pdf_to_images(temp_pdf_bytes)
+
+                    if template == 'DHL parcel':
+                        load_template.dhl_parcel(temp_filename, temp_images, index, instant_download=True)
+
+                    if template == 'Custom':
+                        load_template.custom(temp_filename, temp_images, index, instant_download=True)
 
                 
