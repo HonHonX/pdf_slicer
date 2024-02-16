@@ -14,8 +14,8 @@ def convert_pdf_to_images(pdf_bytes):
 st.set_page_config(page_title="PDF Slicer", page_icon="📄", layout="wide")     
 
 # Setting a title for the Streamlit Application and adding a description
-st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Image_Crop_Icon.svg/81px-Image_Crop_Icon.svg.png?20160621222328')
-st.title('PDF Slicer')
+st.image('https://github.com/HonHonX/pdf_slicer/blob/main/logo.png?raw=true')
+#st.title('PDF Slicer')
 st.write('©Sharon Buch')
 st.markdown("""---""")
 
