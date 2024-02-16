@@ -28,11 +28,11 @@ with st.sidebar:
     uploaded_files = st.file_uploader("Choose a .pdf file", type=["pdf"], accept_multiple_files=True)
     st.markdown("""---""")
 
-    if len(uploaded_files) > 0:
-        with col1:
+    with col1:
+        if len(uploaded_files) > 0:
             # Choose file to display
             selected_file_number = 1
-            if len(uploaded_files) > 1:
+            if len(uploaded_files)>1:
                 selected_file_number = st.slider("Select file to preview", 1, len(uploaded_files), 1) #st.slider(label,min,max,startingValue)
             uploaded_file = uploaded_files[selected_file_number-1] 
 
@@ -64,5 +64,34 @@ with st.sidebar:
 
             with st.sidebar:
                 st.download_button(label="💾 Download cropped image(s)", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip", type="primary", use_container_width=True)
+
+            # with st.sidebar:
+            #     if st.button("Download cropped images (all files)", type='primary'):
+            #         for index, uploaded_file in enumerate(uploaded_files):
+            #             print (index)
+            #             temp_filename = uploaded_file.name[:-4]
+            #             temp_pdf_bytes = uploaded_file.read()
+            #             temp_images = convert_pdf_to_images(temp_pdf_bytes)
+            #             print ('test4')
+
+            #             if template == 'DHL parcel':
+            #                 load_template.dhl_parcel(temp_filename, temp_images, index*1, instant_download=True)
+
+            #             if template == 'Custom':
+            #                 load_template.custom(temp_filename, temp_images, index+1, instant_download=True)
+
+            #with st.sidebar:
+                # if template == 'DHL parcel':
+                #     st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
+                # for index, uploaded_file in enumerate(uploaded_files):
+                #     temp_filename = uploaded_file.name[:-4]
+                #     temp_pdf_bytes = uploaded_file.read()
+                #     temp_images = convert_pdf_to_images(temp_pdf_bytes)
+
+                #     if template == 'DHL parcel':
+                #         load_template.dhl_parcel(temp_filename, temp_images, index, instant_download=True)
+
+                #     if template == 'Custom':
+                #         load_template.custom(temp_filename, temp_images, index, instant_download=True)
 
                 

@@ -18,7 +18,7 @@ def number_input_set(x,y,width,height,rotation,pack_number,index):
 
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
-def custom(filename, images, index, instant_download=False):
+def custom(filename, images, index):
 
     st.write("**Cropped Image**")
     page_number = 1
@@ -37,13 +37,13 @@ def custom(filename, images, index, instant_download=False):
     st.image(cropped_image, caption="Cropped Image", use_column_width=True)
 
     # Saving cropped image to temp
-    with zipfile.ZipFile(filename+".zip", "a") as zip:
+    with zipfile.ZipFile(filename+".zip", "w") as zip:
         cropped_image_bytes = BytesIO()
         cropped_image.save(cropped_image_bytes, format="JPEG")
         cropped_image_bytes.seek(0)
         zip.writestr(filename+".jpg", cropped_image_bytes.read())
 
-def dhl_parcel(filename, images, index, instant_download=False):
+def dhl_parcel(filename, images, index):
     number_pages = len(images)  
 
     # Determining if the pdf is referring to an international/national parcel
@@ -97,7 +97,7 @@ def dhl_parcel(filename, images, index, instant_download=False):
 
     with st.sidebar:
         # Create a zip file containing all three images
-        with zipfile.ZipFile(filename+".zip", "a") as zip:
+        with zipfile.ZipFile(filename+".zip", "w") as zip:
             cropped_image_1_bytes = BytesIO()
             cropped_image_1.save(cropped_image_1_bytes, format="JPEG")
             cropped_image_1_bytes.seek(0)
