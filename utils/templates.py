@@ -1,5 +1,4 @@
 import streamlit as st
-from pdf2image import convert_from_bytes
 from io import BytesIO
 import zipfile
 
@@ -38,7 +37,7 @@ def custom(filename, images, index, instant_download=False):
     st.image(cropped_image, caption="Cropped Image", use_column_width=True)
 
     # Saving cropped image to temp
-    with zipfile.ZipFile(filename+".zip", "w") as zip:
+    with zipfile.ZipFile(filename+".zip", "a") as zip:
         cropped_image_bytes = BytesIO()
         cropped_image.save(cropped_image_bytes, format="JPEG")
         cropped_image_bytes.seek(0)
@@ -98,7 +97,7 @@ def dhl_parcel(filename, images, index, instant_download=False):
 
     with st.sidebar:
         # Create a zip file containing all three images
-        with zipfile.ZipFile(filename+".zip", "w") as zip:
+        with zipfile.ZipFile(filename+".zip", "a") as zip:
             cropped_image_1_bytes = BytesIO()
             cropped_image_1.save(cropped_image_1_bytes, format="JPEG")
             cropped_image_1_bytes.seek(0)
