@@ -1,6 +1,7 @@
 import streamlit as st
 from pdf2image import convert_from_bytes
-import os
+from io import BytesIO
+import zipfile
 
 def cut_image(image, x, y, width, height, rotation):
     # Crop the image based on specified pixel dimensions
@@ -10,11 +11,6 @@ def cut_image(image, x, y, width, height, rotation):
     return cropped_image 
 
 def number_input_set(x,y,width,height,rotation,pack_number,index):
-    # x_temp = st.number_input("X-coordinate:", value = x, key = 1+(pack_number*5*index))
-    # y_temp = st.number_input("Y-coordinate:", value = y, key = 2+(pack_number*5*index))
-    # width_temp = st.number_input("Width:", value = width, key = 3+(pack_number*5*index))
-    # height_temp = st.number_input("Height:", value = height, key = 4+(pack_number*5*index))
-    # rotation_temp = st.number_input("Rotation:", value = rotation, key = 5+(pack_number*5*index))
     x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
     y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
     width_temp = st.number_input("Width:", value = width, key = f"width{index}")
@@ -24,8 +20,6 @@ def number_input_set(x,y,width,height,rotation,pack_number,index):
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
 def custom(filename, images, index, instant_download=False):
-    # download_dir = "Downloaded_Images/"
-    # os.makedirs(download_dir, exist_ok=True)
 
     st.write("**Cropped Image**")
     page_number = 1
@@ -45,16 +39,14 @@ def custom(filename, images, index, instant_download=False):
 
     # Download button for the cropped image
     with st.sidebar:
-        if st.button("Download cropped images", type='primary') or instant_download:
-            # Save the image
-            download_dir = "Downloaded_Images/"
-            os.makedirs(download_dir, exist_ok=True)
-            cropped_image.save("Downloaded_Images/" + filename + "_cropped.png",format="PNG")
+        buf = BytesIO()
+        cropped_image.save(buf, format="JPEG")
+        byte_im = buf.getvalue()
+        st.download_button(label="Download Image",data=byte_im,file_name="cropped_image.jpg",mime="image/jpg")
 
 def dhl_parcel(filename, images, index, instant_download=False):
-    # download_dir = "Downloaded_Images/"
-    # os.makedirs(download_dir, exist_ok=True)
     number_pages = len(images)  
+    temp_img_storage = []
 
     # Determining if the pdf is referring to an international/national parcel
     if number_pages==2:
@@ -107,11 +99,24 @@ def dhl_parcel(filename, images, index, instant_download=False):
             st.write(type(cropped_image_3))
 
     with st.sidebar:
-        # Download button for the cropped image
-        if st.button("Download cropped images (selected file)", type='primary') or instant_download:
-            # Save the image
-            cropped_image_1.save("/Downloaded_Images/" +filename + "_1.png",format="PNG")
-            cropped_image_2.save("/Downloaded_Images/" + filename + "_2.png",format="PNG")
+        # Create a zip file containing all three images
+        with zipfile.ZipFile(filename+".zip", "w") as zip:
+            cropped_image_1_bytes = BytesIO()
+            cropped_image_1.save(cropped_image_1_bytes, format="JPEG")
+            cropped_image_1_bytes.seek(0)
+            zip.writestr(filename+"_QR.jpg", cropped_image_1_bytes.read())
+
+            cropped_image_2_bytes = BytesIO()
+            cropped_image_2.save(cropped_image_2_bytes, format="JPEG")
+            cropped_image_2_bytes.seek(0)
+            zip.writestr(filename+"_address.jpg", cropped_image_2_bytes.read())
+
             if international_parcel:
-                cropped_image_3.save("/Downloaded_Images/" + filename + "_3.png",format="PNG")
+                cropped_image_3_bytes = BytesIO()
+                cropped_image_3.save(cropped_image_3_bytes, format="JPEG")
+                cropped_image_3_bytes.seek(0)
+                zip.writestr(filename+"_customs.jpg", cropped_image_3_bytes.read())
+
+        # Provide download button for the zip file
+        st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
         

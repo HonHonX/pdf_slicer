@@ -1,3 +1,4 @@
 streamlit
 pdf2image
-
+io
+zipfile
