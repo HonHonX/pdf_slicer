@@ -11,12 +11,10 @@ def convert_pdf_to_images(pdf_bytes):
     return images 
 
 # Setting Streamlit to wide mode
-st.set_page_config(page_title="PDF Slicer", page_icon="📄", layout="wide")     
+st.set_page_config(page_title="PDF Slice", page_icon="📄", layout="wide")     
 
 # Setting a title for the Streamlit Application and adding a description
-st.image('https://github.com/HonHonX/pdf_slicer/blob/main/logo.png?raw=true', caption='©Sharon Buch', width=200)
-#st.title('PDF Slicer')
-#st.write('©Sharon Buch')
+st.image('https://github.com/HonHonX/pdf_slicer/blob/main/logo.png?raw=true', width=200)
 st.markdown("""---""")
 
 # Create Columns
@@ -50,6 +48,8 @@ with st.sidebar:
             st.image(images[page_number-1], caption=f"Page {page_number}", width=200)
 
             with st.sidebar:
+                st.write('©Sharon Buch')
+                
                 # Select Cutting Template
                 st.subheader("Select Template:")
                 template = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
