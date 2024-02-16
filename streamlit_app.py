@@ -64,34 +64,4 @@ with st.sidebar:
 
             with st.sidebar:
                 st.download_button(label="💾 Download cropped image(s)", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip", type="primary", use_container_width=True)
-
-            # with st.sidebar:
-            #     if st.button("Download cropped images (all files)", type='primary'):
-            #         for index, uploaded_file in enumerate(uploaded_files):
-            #             print (index)
-            #             temp_filename = uploaded_file.name[:-4]
-            #             temp_pdf_bytes = uploaded_file.read()
-            #             temp_images = convert_pdf_to_images(temp_pdf_bytes)
-            #             print ('test4')
-
-            #             if template == 'DHL parcel':
-            #                 load_template.dhl_parcel(temp_filename, temp_images, index*1, instant_download=True)
-
-            #             if template == 'Custom':
-            #                 load_template.custom(temp_filename, temp_images, index+1, instant_download=True)
-
-            #with st.sidebar:
-                # if template == 'DHL parcel':
-                #     st.download_button(label="Download All Images", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip")
-                # for index, uploaded_file in enumerate(uploaded_files):
-                #     temp_filename = uploaded_file.name[:-4]
-                #     temp_pdf_bytes = uploaded_file.read()
-                #     temp_images = convert_pdf_to_images(temp_pdf_bytes)
-
-                #     if template == 'DHL parcel':
-                #         load_template.dhl_parcel(temp_filename, temp_images, index, instant_download=True)
-
-                #     if template == 'Custom':
-                #         load_template.custom(temp_filename, temp_images, index, instant_download=True)
-
                 
