@@ -42,11 +42,10 @@ def custom(filename, images, index, instant_download=False):
         buf = BytesIO()
         cropped_image.save(buf, format="JPEG")
         byte_im = buf.getvalue()
-        st.download_button(label="Download Image",data=byte_im,file_name="cropped_image.jpg",mime="image/jpg")
+        st.download_button(label="Download Image",data=byte_im,file_name=filename+"_cropped_image.jpg",mime="image/jpg")
 
 def dhl_parcel(filename, images, index, instant_download=False):
     number_pages = len(images)  
-    temp_img_storage = []
 
     # Determining if the pdf is referring to an international/national parcel
     if number_pages==2:
@@ -96,7 +95,6 @@ def dhl_parcel(filename, images, index, instant_download=False):
 
             # Display the cropped image
             st.image(cropped_image_3, caption="cropped image", use_column_width=True)
-            st.write(type(cropped_image_3))
 
     with st.sidebar:
         # Create a zip file containing all three images
