@@ -42,7 +42,7 @@ with st.sidebar:
             images += convert_pdf_to_images(pdf_bytes)
 
             # Display the images
-            st.subheader("PDF Pages image preview:")
+            st.subheader("PDF page(s) image preview:")
             page_number = 1 #default
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
