@@ -51,11 +51,11 @@ with st.sidebar:
 
             value = streamlit_image_coordinates(
             images[page_number-1],
-            width = 300,
+            width = 450,
             key="local",
             )
 
-            st.write(value)
+            st.write(value['x'])
 
             with st.sidebar:
                 
