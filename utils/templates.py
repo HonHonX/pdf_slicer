@@ -10,7 +10,7 @@ def cut_image(image, x, y, width, height, rotation):
     return cropped_image 
 
 def number_input_creation(x,y,width,height,rotation_option,rotation,index,expand_selection):
-    with st.expander("edit value:", expanded=expand_selection):
+    with st.expander("values", expanded=expand_selection):
         x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
         y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
         width_temp = st.number_input("Width:", value = width, key = f"width{index}")
@@ -82,7 +82,7 @@ def dhl_parcel(filename, images, index):
 
     with col2:
         st.write(" ")
-        st.write("**Etikett**")
+        st.write("**Label**")
 
         # Specify pixel dimensions for cutting
         x_2, y_2, width_2, height_2, rotation_2 = number_input_creation(x=1300, y=50, width=900, height=1600, rotation_option=True, rotation=270, index=index+1, expand_selection=False)
@@ -97,7 +97,7 @@ def dhl_parcel(filename, images, index):
     if international_parcel:
         with col3:
             st.write(" ")
-            st.write("**Zollinhaltserklärung**")
+            st.write("**Customs Declaration**")
 
             # Specify pixel dimensions for cutting
             x_3, y_3, width_3, height_3, rotation_3 = number_input_creation(x=510, y=145, width=635, height=880, rotation_option=True, rotation=0, index=index+2, expanded=False)
