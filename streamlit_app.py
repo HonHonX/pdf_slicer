@@ -1,6 +1,7 @@
 import streamlit as st
 from pdf2image import convert_from_bytes
 import utils.templates as load_template
+import streamlit_image_coordinates
 
 def convert_pdf_to_images(pdf_bytes):
     '''

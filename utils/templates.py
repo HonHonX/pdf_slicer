@@ -1,7 +1,6 @@
 import streamlit as st
 from io import BytesIO
 import zipfile
-import streamlit_image_coordinates
 
 def cut_image(image, x, y, width, height, rotation):
     # Crop the image based on specified pixel dimensions
