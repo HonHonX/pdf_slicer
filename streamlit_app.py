@@ -48,6 +48,13 @@ with st.sidebar:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
             st.image(images[page_number-1], caption=f"Page {page_number}", width=200)
 
+            value = streamlit_image_coordinates(
+            images[page_number-1],
+            key="local",
+            )
+
+            st.write(value)
+
             with st.sidebar:
                 
                 # Select Cutting Template

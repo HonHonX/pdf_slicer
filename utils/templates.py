@@ -1,6 +1,7 @@
 import streamlit as st
 from io import BytesIO
 import zipfile
+import streamlit_image_coordinates
 
 def cut_image(image, x, y, width, height, rotation):
     # Crop the image based on specified pixel dimensions
@@ -42,6 +43,8 @@ def custom(filename, images, index):
         cropped_image.save(cropped_image_bytes, format="JPEG")
         cropped_image_bytes.seek(0)
         zip.writestr(filename+".jpg", cropped_image_bytes.read())
+    
+
 
 def dhl_parcel(filename, images, index):
     number_pages = len(images)  
