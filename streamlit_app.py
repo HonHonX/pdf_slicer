@@ -47,18 +47,17 @@ with st.sidebar:
             page_number = 1 #default
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
-            st.image(images[page_number-1], caption=f"Page {page_number}")
-
-            value = streamlit_image_coordinates(
+            st.caption("Page {page_number}")
+            #st.image(images[page_number-1], caption=f"Page {page_number}")
+            #For the custom template, you can click inside the image preview to get x and y coordinates for where you clicked in the picture
+            pixel_coordinates_clicked = streamlit_image_coordinates(
             images[page_number-1],
             width = 500,
             key="local",
             )
-
-            ratio = images[page_number-1].width/500
-
-            st.write(value['x'])
-            st.write(images[page_number-1].width)
+            resizing_ratio = images[page_number-1].width/500 #preview is most likely resized so the coordinates have to be adjusted accordingly
+            x_coordinate = pixel_coordinates_clicked['x']*resizing_ratio
+            y_coordinate = pixel_coordinates_clicked['y']*resizing_ratio
 
             with st.sidebar:
                 
@@ -72,7 +71,7 @@ with st.sidebar:
                     load_template.dhl_parcel(filename, images, 1)
                 
                 if template == 'Custom':
-                    load_template.custom(filename, images, 1, value['x']*ratio, value['y']*ratio)
+                    load_template.custom(filename, images, 1, x_coordinate, y_coordinate)
 
             with st.sidebar:
                 st.download_button(label="💾 Download cropped image(s)", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip", type="primary", use_container_width=True)

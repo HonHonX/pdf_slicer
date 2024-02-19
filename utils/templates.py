@@ -9,7 +9,7 @@ def cut_image(image, x, y, width, height, rotation):
 
     return cropped_image 
 
-def number_input_set(x,y,width,height,rotation,pack_number,index):
+def number_input_set(x,y,width,height,rotation,index):
     x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
     y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
     width_temp = st.number_input("Width:", value = width, key = f"width{index}")
@@ -18,7 +18,7 @@ def number_input_set(x,y,width,height,rotation,pack_number,index):
 
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
-def custom(filename, images, index, x_start, y_start):
+def custom(filename, images, index, x_coordinate, y_coordinate):
 
     st.write(" ")
     st.write("**Cropped Image**")
@@ -29,7 +29,7 @@ def custom(filename, images, index, x_start, y_start):
         page_number = st.slider("Select Page to Cut", 1, len(images), 1)
 
     # Specify pixel dimensions for cutting
-    x, y, width, height, rotation = number_input_set(x_start, y_start, 100, 100, 0, 0, index)
+    x, y, width, height, rotation = number_input_set(x_coordinate, y_coordinate, 100, 100, 0, 0, index)
 
     # Cut the image
     cropped_image = cut_image(images[page_number - 1], x, y, width, height, rotation)
