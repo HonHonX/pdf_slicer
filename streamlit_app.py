@@ -51,7 +51,7 @@ with st.sidebar:
 
             value = streamlit_image_coordinates(
             images[page_number-1],
-            width = col1.width,
+            width = auto,
             key="local",
             )
 
