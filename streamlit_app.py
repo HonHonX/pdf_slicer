@@ -46,7 +46,7 @@ with st.sidebar:
             page_number = 1 #default
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
-            st.image(images[page_number-1], caption=f"Page {page_number}", width=200)
+            st.image(images[page_number-1], caption=f"Page {page_number}", width=400)
 
             with st.sidebar:
                 
