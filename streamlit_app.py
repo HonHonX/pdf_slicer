@@ -56,8 +56,8 @@ with st.sidebar:
             key="local",
             )
             resizing_ratio = images[page_number-1].width/500 #preview is most likely resized so the coordinates have to be adjusted accordingly
-            x_coordinate = pixel_coordinates_clicked['x']*resizing_ratio
-            y_coordinate = pixel_coordinates_clicked['y']*resizing_ratio
+            x_coordinate = int(pixel_coordinates_clicked['x']*resizing_ratio)
+            y_coordinate = int(pixel_coordinates_clicked['y']*resizing_ratio)
 
             with st.sidebar:
                 
