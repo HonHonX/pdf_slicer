@@ -53,12 +53,9 @@ with st.sidebar:
             pixel_coordinates_clicked = streamlit_image_coordinates( images[page_number-1], width = 500, key="local")
             if pixel_coordinates_clicked is None:
                 pixel_coordinates_clicked = {'x': 100, 'y' : 100}
-            st.write(pixel_coordinates_clicked)
             resizing_ratio = images[page_number-1].width/500 #preview is most likely resized so the coordinates have to be adjusted accordingly
             x_coordinate = int(pixel_coordinates_clicked['x']*resizing_ratio)
             y_coordinate = int(pixel_coordinates_clicked['y']*resizing_ratio)
-            st.write(x_coordinate)
-            st.write(y_coordinate)
 
             with st.sidebar:
                 
