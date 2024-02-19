@@ -9,12 +9,13 @@ def cut_image(image, x, y, width, height, rotation):
 
     return cropped_image 
 
-def number_input_set(x,y,width,height,rotation,index):
+def number_input_set(x,y,width,height,rotation_option=True,rotation,index):
     x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
     y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
     width_temp = st.number_input("Width:", value = width, key = f"width{index}")
     height_temp = st.number_input("Height:", value = height, key = f"height{index}")
-    rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
+    if (rotation_option):
+        rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
 
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
@@ -29,7 +30,7 @@ def custom(filename, images, index, x_coordinate, y_coordinate):
         page_number = st.slider("Select Page to Cut", 1, len(images), 1)
 
     # Specify pixel dimensions for cutting
-    x, y, width, height, rotation = number_input_set(x_coordinate, y_coordinate, 100, 100, 0, 0, index)
+    x, y, width, height, rotation = number_input_set(x_coordinate, y_coordinate, 100, 100, False, 0, index)
 
     # Cut the image
     cropped_image = cut_image(images[page_number - 1], x, y, width, height, rotation)
@@ -66,7 +67,7 @@ def dhl_parcel(filename, images, index):
         st.write("**QR Code**")
 
         # Specify pixel dimensions for cutting
-        x_1, y_1, width_1, height_1, rotation_1 = number_input_set(705, 150, 340, 340, 270, 1, index)
+        x_1, y_1, width_1, height_1, rotation_1 = number_input_set(705, 150, 340, 340, True, 270, index)
 
         # Cut the image
         cropped_image_1 = cut_image(images[main_page], x_1, y_1, width_1, height_1, rotation_1)
@@ -79,7 +80,7 @@ def dhl_parcel(filename, images, index):
         st.write("**Etikett**")
 
         # Specify pixel dimensions for cutting
-        x_2, y_2, width_2, height_2, rotation_2 = number_input_set(1300, 50, 900, 1600, 270, 2, index+1)
+        x_2, y_2, width_2, height_2, rotation_2 = number_input_set(1300, 50, 900, 1600, True, 270, index+1)
 
         # Cut the image
         cropped_image_2 = cut_image(images[main_page], x_2, y_2, width_2, height_2, rotation_2)
@@ -93,7 +94,7 @@ def dhl_parcel(filename, images, index):
             st.write("**Zollinhaltserklärung**")
 
             # Specify pixel dimensions for cutting
-            x_3, y_3, width_3, height_3, rotation_3 = number_input_set(510, 145, 635, 880, 0, 3, index+2)
+            x_3, y_3, width_3, height_3, rotation_3 = number_input_set(510, 145, 635, 880, True, 0, index+2)
 
             # Cut the image
             cropped_image_3 = cut_image(images[sub_page], x_3, y_3, width_3, height_3, rotation_3)
