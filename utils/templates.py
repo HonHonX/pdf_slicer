@@ -10,14 +10,14 @@ def cut_image(image, x, y, width, height, rotation):
     return cropped_image 
 
 def number_input_creation(x,y,width,height,rotation_option,rotation,index,expand_selection):
-    with st.expander("edit value:", expanded=expand_selection)
-    x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
-    y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
-    width_temp = st.number_input("Width:", value = width, key = f"width{index}")
-    height_temp = st.number_input("Height:", value = height, key = f"height{index}")
-    rotation_temp = 0
-    if (rotation_option):
-        rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
+    with st.expander("edit value:", expanded=expand_selection):
+        x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
+        y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
+        width_temp = st.number_input("Width:", value = width, key = f"width{index}")
+        height_temp = st.number_input("Height:", value = height, key = f"height{index}")
+        rotation_temp = 0
+        if (rotation_option):
+            rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
 
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
