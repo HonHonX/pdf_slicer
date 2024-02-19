@@ -48,16 +48,18 @@ with st.sidebar:
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
             st.caption("Page "+ str(page_number))
-            #st.image(images[page_number-1], caption=f"Page {page_number}")
-            #For the custom template, you can click inside the image preview to get x and y coordinates for where you clicked in the picture
-            pixel_coordinates_clicked = streamlit_image_coordinates(
-            images[page_number-1],
-            width = 500,
-            key="local",
-            )
+            
+            #For the custom template, you can click inside the image preview to get the x and y coordinates for where you clicked in the picture
+            if (!pixel_coordinates_clicked['x']):
+                pixel_coordinates_clicked['x'] = 100
+            if (!pixel_coordinates_clicked['y']):
+                pixel_coordinates_clicked['y'] = 100
+            pixel_coordinates_clicked = streamlit_image_coordinates( images[page_number-1], width = 500, key="local")
             resizing_ratio = images[page_number-1].width/500 #preview is most likely resized so the coordinates have to be adjusted accordingly
             x_coordinate = int(pixel_coordinates_clicked['x']*resizing_ratio)
             y_coordinate = int(pixel_coordinates_clicked['y']*resizing_ratio)
+            st.write(x_coordinate)
+            st.write(y_coordinate)
 
             with st.sidebar:
                 
