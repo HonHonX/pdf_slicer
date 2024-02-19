@@ -49,8 +49,9 @@ with st.sidebar:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
             st.image(images[page_number-1], caption=f"Page {page_number}")
 
+            test = images[page_number-1]
             value = streamlit_image_coordinates(
-            images[page_number-1],
+            test,
             key="local",
             )
 
