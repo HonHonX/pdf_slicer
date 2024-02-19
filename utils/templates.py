@@ -9,7 +9,7 @@ def cut_image(image, x, y, width, height, rotation):
 
     return cropped_image 
 
-def number_input_set(x,y,width,height,rotation_option=True,rotation,index):
+def number_input_set(x,y,width,height,rotation_option,rotation,index):
     x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
     y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
     width_temp = st.number_input("Width:", value = width, key = f"width{index}")
