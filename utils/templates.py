@@ -40,6 +40,7 @@ def custom(filename, images, index, x_coordinate, y_coordinate):
     cropped_image = cut_image(images[page_number - 1], x, y, width, height, rotation)
 
     # Display the cropped image
+    st.write(" ")
     st.image(cropped_image, caption="Cropped Image", use_column_width=True)
 
     # Saving cropped image to temp
