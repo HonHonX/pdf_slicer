@@ -55,6 +55,7 @@ with st.sidebar:
             )
 
             st.write(value['x'])
+            st.write(images[page_number-1].width)
 
             with st.sidebar:
                 
