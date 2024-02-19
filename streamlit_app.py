@@ -15,11 +15,11 @@ st.set_page_config(page_title="PDF Slice", page_icon="📄", layout="wide")
 
 # Setting a title for the Streamlit Application and adding a description
 st.image('https://github.com/HonHonX/pdf_slicer/blob/main/logo.png?raw=true', width=200)
-st.markdown('*©Sharon Buch*')
+st.caption("<p style='text-align: right;'>©Sharon Buch</p>", unsafe_allow_html=True)
 st.markdown("""---""")
 
 # Create Columns
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([2,3], gap="large")
 
 with st.sidebar:
     # Upload pdf
@@ -46,7 +46,7 @@ with st.sidebar:
             page_number = 1 #default
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
-            st.image(images[page_number-1], caption=f"Page {page_number}", width=200)
+            st.image(images[page_number-1], caption=f"Page {page_number}")
 
             value = streamlit_image_coordinates(
             images[page_number-1],
