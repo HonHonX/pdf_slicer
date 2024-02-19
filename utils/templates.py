@@ -14,6 +14,7 @@ def number_input_set(x,y,width,height,rotation_option,rotation,index):
     y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
     width_temp = st.number_input("Width:", value = width, key = f"width{index}")
     height_temp = st.number_input("Height:", value = height, key = f"height{index}")
+    rotation_temp = 0
     if (rotation_option):
         rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
 
