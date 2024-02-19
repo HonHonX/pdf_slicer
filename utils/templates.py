@@ -30,7 +30,7 @@ def custom(filename, images, index, x_coordinate, y_coordinate):
     if len(images)>1:
         page_number = st.slider("Select Page to Cut", 1, len(images), 1)
 
-    st.info("You can either enter the coordinates manually or simple click the desired starting point (always starting from the top left corner) in the preview picture")
+    st.info("💡 You can either enter the coordinates manually or simple click the desired starting point (always starting from the top left corner) in the preview picture!")
 
     # Specify pixel dimensions for cutting
     x, y, width, height, rotation = number_input_set(x_coordinate, y_coordinate, 100, 100, False, 0, index)
