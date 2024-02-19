@@ -50,11 +50,11 @@ with st.sidebar:
             st.caption("Page "+ str(page_number))
             
             #For the custom template, you can click inside the image preview to get the x and y coordinates for where you clicked in the picture
+            pixel_coordinates_clicked = streamlit_image_coordinates( images[page_number-1], width = 500, key="local")
             if pixel_coordinates_clicked['x'] is None:
                 pixel_coordinates_clicked['x'] = 100
             if pixel_coordinates_clicked['y'] is None:
                 pixel_coordinates_clicked['y'] = 100
-            pixel_coordinates_clicked = streamlit_image_coordinates( images[page_number-1], width = 500, key="local")
             resizing_ratio = images[page_number-1].width/500 #preview is most likely resized so the coordinates have to be adjusted accordingly
             x_coordinate = int(pixel_coordinates_clicked['x']*resizing_ratio)
             y_coordinate = int(pixel_coordinates_clicked['y']*resizing_ratio)
