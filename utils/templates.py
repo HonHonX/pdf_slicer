@@ -20,6 +20,7 @@ def number_input_set(x,y,width,height,rotation,pack_number,index):
 
 def custom(filename, images, index):
 
+    st.write(" ")
     st.write("**Cropped Image**")
     page_number = 1
 
