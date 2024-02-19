@@ -19,7 +19,7 @@ st.caption("<p style='text-align: right;'>©Sharon Buch</p>", unsafe_allow_html=
 st.markdown("""---""")
 
 # Create Columns
-col1, col2 = st.columns(2, gap="large")
+col1, col2 = st.columns([2,3], gap="large")
 
 with st.sidebar:
     # Upload pdf
