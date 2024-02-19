@@ -15,6 +15,7 @@ st.set_page_config(page_title="PDF Slice", page_icon="📄", layout="wide")
 
 # Setting a title for the Streamlit Application and adding a description
 st.image('https://github.com/HonHonX/pdf_slicer/blob/main/logo.png?raw=true', width=200)
+st.markdown("<h3 style='text-align: right;'>©Sharon Buch</h3>", unsafe_allow_html=True)
 st.caption('*©Sharon Buch*')
 st.markdown("""---""")
 
