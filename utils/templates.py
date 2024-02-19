@@ -60,6 +60,7 @@ def dhl_parcel(filename, images, index):
 
     # Adding Columns
     with col1:
+        st.write(" ")
         st.write("**QR Code**")
 
         # Specify pixel dimensions for cutting
@@ -72,6 +73,7 @@ def dhl_parcel(filename, images, index):
         st.image(cropped_image_1, caption="Cropped Image", use_column_width=True)
 
     with col2:
+        st.write(" ")
         st.write("**Etikett**")
 
         # Specify pixel dimensions for cutting
@@ -85,6 +87,7 @@ def dhl_parcel(filename, images, index):
 
     if international_parcel:
         with col3:
+            st.write(" ")
             st.write("**Zollinhaltserklärung**")
 
             # Specify pixel dimensions for cutting
