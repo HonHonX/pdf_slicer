@@ -47,7 +47,7 @@ with st.sidebar:
             page_number = 1 #default
             if len(images)>1:
                 page_number = st.slider("Select page to preview for *" + uploaded_file.name + "*:", 1, len(images), 1)
-            st.caption("Page {page_number}")
+            st.caption("Page "+ page_number)
             #st.image(images[page_number-1], caption=f"Page {page_number}")
             #For the custom template, you can click inside the image preview to get x and y coordinates for where you clicked in the picture
             pixel_coordinates_clicked = streamlit_image_coordinates(
