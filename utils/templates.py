@@ -9,15 +9,14 @@ def cut_image(image, x, y, width, height, rotation):
 
     return cropped_image 
 
-def number_input_creation(x,y,width,height,rotation_option,rotation,index,expand_selection):
-    with st.expander("values", expanded=expand_selection):
-        x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
-        y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
-        width_temp = st.number_input("Width:", value = width, key = f"width{index}")
-        height_temp = st.number_input("Height:", value = height, key = f"height{index}")
-        rotation_temp = 0
-        if (rotation_option):
-            rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
+def number_input_creation(x,y,width,height,rotation_option,rotation,index):
+    x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
+    y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
+    width_temp = st.number_input("Width:", value = width, key = f"width{index}")
+    height_temp = st.number_input("Height:", value = height, key = f"height{index}")
+    rotation_temp = 0
+    if (rotation_option):
+        rotation_temp = st.number_input("Rotation:", value = rotation, key = f"rotation{index}")
 
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
@@ -34,7 +33,7 @@ def custom(filename, images, index, x_coordinate, y_coordinate):
     st.info("💡 You can either enter the coordinates manually or simple click the desired starting point (always starting from the top left corner) in the preview picture!")
 
     # Specify pixel dimensions for cutting
-    x, y, width, height, rotation = number_input_creation(x=x_coordinate, y=y_coordinate, width=200, height=200, rotation_option=False, rotation=0, index=index, expand_selection=True)
+    x, y, width, height, rotation = number_input_creation(x=x_coordinate, y=y_coordinate, width=200, height=200, rotation_option=False, rotation=0, index=index)
 
     # Cut the image
     cropped_image = cut_image(images[page_number - 1], x, y, width, height, rotation)
@@ -72,7 +71,7 @@ def dhl_parcel(filename, images, index):
         st.write("**QR Code**")
 
         # Specify pixel dimensions for cutting
-        x_1, y_1, width_1, height_1, rotation_1 = number_input_creation(x=705, y=150, width=340, height=340, rotation_option=True, rotation=270, index=index, expand_selection=False)
+        x_1, y_1, width_1, height_1, rotation_1 = number_input_creation(x=705, y=150, width=340, height=340, rotation_option=True, rotation=270, index=index)
 
         # Cut the image
         cropped_image_1 = cut_image(images[main_page], x_1, y_1, width_1, height_1, rotation_1)
@@ -86,7 +85,7 @@ def dhl_parcel(filename, images, index):
         st.write("**Label**")
 
         # Specify pixel dimensions for cutting
-        x_2, y_2, width_2, height_2, rotation_2 = number_input_creation(x=1300, y=50, width=900, height=1600, rotation_option=True, rotation=270, index=index+1, expand_selection=False)
+        x_2, y_2, width_2, height_2, rotation_2 = number_input_creation(x=1300, y=50, width=900, height=1600, rotation_option=True, rotation=270, index=index+1)
 
         # Cut the image
         cropped_image_2 = cut_image(images[main_page], x_2, y_2, width_2, height_2, rotation_2)
@@ -101,7 +100,7 @@ def dhl_parcel(filename, images, index):
             st.write("**Customs Declaration**")
 
             # Specify pixel dimensions for cutting
-            x_3, y_3, width_3, height_3, rotation_3 = number_input_creation(x=510, y=145, width=635, height=880, rotation_option=True, rotation=0, index=index+2, expand_selection=False)
+            x_3, y_3, width_3, height_3, rotation_3 = number_input_creation(x=510, y=145, width=635, height=880, rotation_option=True, rotation=0, index=index+2)
 
             # Cut the image
             cropped_image_3 = cut_image(images[sub_page], x_3, y_3, width_3, height_3, rotation_3)
