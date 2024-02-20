@@ -66,10 +66,12 @@ with st.sidebar:
 
             with col2:
                 if template == 'DHL parcel':
-                    load_template.dhl_parcel(filename, images, 1)
+                    with st.expander("values", expanded=False):
+                        load_template.dhl_parcel(filename, images, 1)
                 
                 if template == 'Custom':
-                    load_template.custom(filename, images, 1, x_coordinate, y_coordinate)
+                        with st.expander("values", expanded=True):
+                            load_template.custom(filename, images, 1, x_coordinate, y_coordinate)
 
             with st.sidebar:
                 st.download_button(label="💾 Download cropped image(s)", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip", type="primary", use_container_width=True)
