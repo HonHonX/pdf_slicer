@@ -72,7 +72,7 @@ def dhl_parcel(filename, images, index):
         st.write("**QR Code**")
 
         # Specify pixel dimensions for cutting
-        x_1, y_1, width_1, height_1, rotation_1 = number_input_creation(x=705, y=150, width=340, height=340, rotation_option=True, rotation=270, index=index, expand_selection=False)
+        x_1, y_1, width_1, height_1, rotation_1 = number_input_creation(x=670, y=130, width=500, height=380, rotation_option=True, rotation=270, index=index, expand_selection=False)
 
         # Cut the image
         cropped_image_1 = cut_image(images[main_page], x_1, y_1, width_1, height_1, rotation_1)
