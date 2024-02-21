@@ -101,7 +101,7 @@ def dhl_parcel(filename, images, index):
             st.write("**Customs Declaration**")
 
             # Specify pixel dimensions for cutting
-            x_3, y_3, width_3, height_3, rotation_3 = number_input_creation(x=510, y=145, width=635, height=880, rotation_option=True, rotation=0, index=index+2, expanded=False)
+            x_3, y_3, width_3, height_3, rotation_3 = number_input_creation(x=510, y=145, width=635, height=880, rotation_option=True, rotation=0, index=index+2, expand_selection=False)
 
             # Cut the image
             cropped_image_3 = cut_image(images[sub_page], x_3, y_3, width_3, height_3, rotation_3)

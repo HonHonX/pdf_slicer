@@ -73,4 +73,3 @@ with st.sidebar:
 
             with st.sidebar:
                 st.download_button(label="💾 Download cropped image(s)", data=open(filename+".zip", "rb").read(), file_name=filename+".zip", mime="application/zip", type="primary", use_container_width=True)
-                
