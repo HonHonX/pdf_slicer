@@ -3,6 +3,10 @@ from io import BytesIO
 import zipfile
 
 def cut_image(image, x, y, width, height, rotation):
+    '''
+    This function rotates the image (if necessary) and then cuts it according to the measurements given through the argument list.
+    @return : cropped image
+    '''
     # Crop the image based on specified pixel dimensions
     image = image.rotate(rotation, expand=True)
     cropped_image = image.crop((x, y, x + width, y + height))
@@ -10,6 +14,10 @@ def cut_image(image, x, y, width, height, rotation):
     return cropped_image 
 
 def number_input_creation(x,y,width,height,rotation_option,rotation,index,expand_selection):
+    '''
+    This function creates text input fields for the measurements that are needed for cropping an image.
+    @return : current values entered into the argument list
+    '''
     with st.expander("values", expanded=expand_selection):
         x_temp = st.number_input("X-coordinate:", value = x, key = f"x{index}")
         y_temp = st.number_input("Y-coordinate:", value = y, key = f"y{index}")
@@ -22,7 +30,12 @@ def number_input_creation(x,y,width,height,rotation_option,rotation,index,expand
     return x_temp, y_temp, width_temp, height_temp, rotation_temp
 
 def custom(filename, images, index, x_coordinate, y_coordinate):
-
+    '''
+    This function acts as the template for a custom image crop. The arguments include the filename, the list of images, the index (added for further batch processing expansion) as well as the x and y coordinates.
+    The coordinates are set if the user clicks inside of the image. The values correlate to the position of the cursor upon clicking.
+    The cropping doesn't support image rotation for this reason (otherwise the coordinates aren't working properly). Only one cropped image can be created at a time.
+    '''
+    
     st.write(" ")
     st.write("**Cropped Image**")
     page_number = 1
@@ -53,6 +66,10 @@ def custom(filename, images, index, x_coordinate, y_coordinate):
 
 
 def dhl_parcel(filename, images, index):
+    '''
+    This function acts as the template for cropping a DHL parcel file. The arguments include the filename, the list of images, the index (added for further batch processing expansion).
+    The cropping process enables image rotation. The values are set based on tests.
+    '''
     number_pages = len(images)  
 
     # Determining if the pdf is referring to an international/national parcel
