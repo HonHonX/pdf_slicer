@@ -71,6 +71,7 @@ def dhl_parcel(filename, images, index):
     The cropping process enables image rotation. The values are set based on tests.
     '''
     number_pages = len(images)  
+    col1, col2, col3 = st.columns(3)
 
     # Determining if the pdf is referring to an international/national parcel
     if number_pages==2:
