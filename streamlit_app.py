@@ -50,7 +50,6 @@ with st.sidebar:
             y_coordinate = int(pixel_coordinates_clicked['y']*resizing_ratio)
 
             with st.sidebar:
-                
                 # Select Cutting Template
                 st.subheader("Select Template:")
                 template = st.selectbox('Do you want to use a template to process the .pdf file?',('DHL parcel', 'Custom'))
@@ -58,8 +57,7 @@ with st.sidebar:
 
             with col2:
                 if template == 'DHL parcel':
-                    load_template.dhl_parcel(filename, images, 1)
-                
+                    load_template.dhl_parcel(filename, images, 1)     
                 if template == 'Custom':
                     load_template.custom(filename, images, 1, x_coordinate, y_coordinate)
 
