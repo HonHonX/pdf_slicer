@@ -17,7 +17,7 @@ st.set_page_config(page_title="PDF Slice", page_icon="📄", layout="wide")
 # Setting a title for the Streamlit Application and adding a description
 st.image('https://github.com/HonHonX/pdf_slicer/blob/main/logo.png?raw=true', width=200)
 st.caption("<p style='text-align: right;'>©Sharon Buch</p>", unsafe_allow_html=True)
-st.button("<a href='https://github.com/HonHonX/pdf_slicer/blob/main/sample_label.pdf'><p style='text-align: right;'>Download sample label 💾</p></a>", unsafe_allow_html=True)
+st.caption("<a href='https://github.com/HonHonX/pdf_slicer/blob/main/sample_label.pdf'><p style='text-align: right;'>Download sample label 💾</p></a>", unsafe_allow_html=True)
 st.markdown("""---""")
 
 # Create Columns
