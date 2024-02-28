@@ -3,14 +3,6 @@ from pdf2image import convert_from_bytes
 import utils.templates as load_template
 from streamlit_image_coordinates import streamlit_image_coordinates
 
-def convert_pdf_to_images(pdf_bytes):
-    '''
-    This function converts pdf files to images.
-    It takes a pdf file in byte form and returns list of all pages as images
-    '''
-    images = convert_from_bytes(pdf_bytes)
-    return images 
-
 # Setting Streamlit to wide mode
 st.set_page_config(page_title="PDF Slice", page_icon="📄", layout="wide")     
 
