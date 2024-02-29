@@ -32,7 +32,7 @@ with st.sidebar:
             images = []
             filename = uploaded_file.name[:-4] #without the .pdf part
             pdf_bytes = uploaded_file.read()
-            images += convert_pdf_to_images(pdf_bytes)
+            images += convert_from_bytes(pdf_bytes)
 
             # Display the preview image
             st.subheader("PDF page(s) image preview:")
